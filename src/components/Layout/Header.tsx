@@ -2,7 +2,7 @@
 import { FC, useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import styles from './Header.module.scss';
 
@@ -17,7 +17,7 @@ const Header: FC = () => {
     // Split text animation
     if (titleRef.current) {
       const text = "Gifted Tours";
-      titleRef.current.innerHTML = text.split('').map((char, i) => 
+      titleRef.current.innerHTML = text.split('').map((char) => 
         `<span class="${styles.letter}">${char === ' ' ? '&nbsp;' : char}</span>`
       ).join('');
 
@@ -95,7 +95,6 @@ const Header: FC = () => {
     document.body.style.overflow = '';
   };
 
-  // Your original navigation links
   const navigationLinks = [
     { href: '/', label: 'Home' },
     { href: '#about', label: 'About' },
