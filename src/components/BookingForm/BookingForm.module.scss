@@ -1,0 +1,237 @@
+.bookingSection {
+  padding: 5rem 0;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+              url('/assets/images/booking-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+    z-index: -1;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: white;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ffd700;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+.bookingForm {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.8rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: #333;
+    font-weight: 600;
+    font-size: 1rem;
+
+    .required {
+      color: #e53935;
+      margin-left: 4px;
+    }
+  }
+
+  input, select {
+    width: 100%;
+    padding: 0.9rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #bdbdbd;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    }
+  }
+
+  .inputError {
+    border-color: #e53935;
+    background-color: #fff8f8;
+
+    &:focus {
+      border-color: #e53935;
+      box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%23333'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    padding-right: 2.5rem;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  background: #ffd700;
+  color: #333;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover:not(:disabled) {
+    background: #e6c200; // Fix: Replaced color.adjust() with hardcoded hex color for 5% darker shade
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::after {
+      content: '';
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid #333;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+}
+
+.message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .bookingSection {
+    padding: 3rem 0;
+    background-attachment: scroll;
+  }
+
+  .container {
+    padding: 0 1rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .bookingForm {
+    padding: 1.5rem;
+  }
+
+  .formGroup {
+    margin-bottom: 1.5rem;
+
+    label {
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      padding: 0.8rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container h2 {
+    font-size: 1.8rem;
+  }
+
+  .bookingForm {
+    padding: 1.2rem;
+  }
+
+  .submitButton {
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+}

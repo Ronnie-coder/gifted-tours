@@ -1,0 +1,308 @@
+.fleet {
+  padding: 5rem 0;
+  background: #ffffff;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ffd700;
+    }
+  }
+}
+
+.serviceTypes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.serviceCard {
+  text-align: center;
+  padding: 2rem;
+  background: #f8f8f8;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+    svg {
+      transform: scale(1.1);
+      color: #ccad00; // Fix: Replaced color.adjust() with hardcoded hex color for 10% darker shade
+    }
+  }
+
+  svg {
+    color: #ffd700;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+.fleetTitle {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.fleetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.fleetCard {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+    .imageContainer img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+
+  img {
+    transition: transform 0.3s ease;
+  }
+}
+
+.content {
+  padding: 1.5rem;
+
+  h4 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .type {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .capacity {
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}
+
+.features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+
+  li {
+    padding: 0.4rem 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+
+    &:before {
+      content: '✓';
+      color: #ffd700;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.bookButton {
+  width: 100%;
+  background: #ffd700;
+  color: #333;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: #e6c200; // Fix: Replaced color.adjust() with hardcoded hex color for 5% darker shade
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.aerialTours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  .aerialContent {
+    padding: 3rem;
+
+    h3 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .features {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .aerialImage {
+    height: 100%;
+    min-height: 400px;
+    position: relative;
+  }
+}
+
+@media (max-width: 968px) {
+  .aerialTours {
+    grid-template-columns: 1fr;
+    
+    .aerialContent {
+      padding: 2rem;
+    }
+
+    .aerialImage {
+      min-height: 300px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .fleet {
+    padding: 3rem 0;
+  }
+
+  .container h2 {
+    font-size: 2rem;
+  }
+
+  .fleetTitle {
+    font-size: 1.6rem;
+  }
+
+  .serviceTypes {
+    gap: 1rem;
+  }
+
+  .serviceCard {
+    padding: 1.5rem;
+  }
+
+  .content {
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .aerialTours {
+    .aerialContent {
+      h3 {
+        font-size: 1.4rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .fleetGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .aerialTours {
+    margin: 2rem -1rem 0;
+    border-radius: 0;
+  }
+}
