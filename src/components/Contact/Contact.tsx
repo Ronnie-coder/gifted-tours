@@ -1,22 +1,18 @@
-import { FC, useState, FormEvent, ChangeEvent, useCallback } from 'react';
+import { FC, useState, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
 import styles from './Contact.module.scss';
 
-interface ContactForm {
-  name: string;
-  email: string;
-  comment: string;
-}
-
 const Contact: FC = () => {
-  const [formData, setFormData] = useState<ContactForm>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     comment: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+
+  const [state, handleSubmit] = useForm("xyzjooad");
 
   const handleInputChange = useCallback((
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,22 +21,12 @@ const Contact: FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   }, []);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+  useEffect(() => {
+    if (state.succeeded) {
       setSubmitMessage('Thank you for your message. We will contact you soon!');
       setFormData({ name: '', email: '', comment: '' });
-    } catch (error) {
-      console.error('Error submitting contact form:', error); // Permanent fix: Log the error for debugging
-      setSubmitMessage('An error occurred. Please try again.');
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  }, [state.succeeded]);
 
   return (
     <section id="contact" className={styles.contact}>
@@ -58,10 +44,11 @@ const Contact: FC = () => {
           <ContactInfo />
           <ContactFormSection 
             formData={formData}
-            isSubmitting={isSubmitting}
+            isSubmitting={state.submitting}
             submitMessage={submitMessage}
             onInputChange={handleInputChange}
             onSubmit={handleSubmit}
+            state={state}
           />
         </div>
       </div>
@@ -115,6 +102,7 @@ interface ContactFormSectionProps {
   submitMessage: string;
   onInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onSubmit: (e: FormEvent) => void;
+  state: any;
 }
 
 const ContactFormSection: FC<ContactFormSectionProps> = ({
@@ -122,7 +110,8 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
   isSubmitting,
   submitMessage,
   onInputChange,
-  onSubmit
+  onSubmit,
+  state
 }) => (
   <motion.div 
     className={styles.contactForm}
@@ -155,6 +144,11 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
               required
             />
           )}
+          <ValidationError 
+            prefix={field.label} 
+            field={field.id} 
+            errors={state.errors} 
+          />
         </div>
       ))}
 
