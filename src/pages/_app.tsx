@@ -1,7 +1,8 @@
 // src/pages/_app.tsx
-import type { AppProps } from 'next/app'
-import Head from 'next/head'
-import '../styles/global.scss'
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+import '../styles/global.scss';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -22,8 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:image" content="/images/logo.jpg" /> {/* Updated to use logo from public/images */}
       </Head>
       <Component {...pageProps} />
+      <Analytics />
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
