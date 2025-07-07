@@ -1,8 +1,7 @@
-// Complete code for your BookingForm.tsx file
+// Complete code for your BookingForm.tsx file (No changes needed)
 
 import { FC, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// <<< NOTE: No change was needed here, but the ContactForm needs this fix
 import { useForm, ValidationError } from '@formspree/react';
 import styles from './BookingForm.module.scss';
 
@@ -19,7 +18,7 @@ const BookingForm: FC = () => {
   const durations = [ 'Any', 'Half Day (4-5 hours)', 'Full Day (8-9 hours)', '2 Days', '3 Days', 'Custom Duration' ];
   const [submitMessage, setSubmitMessage] = useState('');
   
-  const [state, handleSubmit] = useForm("xjkrdqll"); // This ID is correct
+  const [state, handleSubmit] = useForm("xjkrdqll"); // Correct ID
 
   useEffect(() => {
     if (submitMessage) {
