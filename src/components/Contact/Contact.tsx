@@ -1,8 +1,9 @@
-// Complete code for your Contact.js file
+// Complete code for your src/components/Contact/Contact.tsx file
 
 import { FC, useState, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useForm, ValidationError } from '@formspree/react';
+// <<< CHANGE 1: Import the 'FormspreeState' type
+import { useForm, ValidationError, type FormspreeState } from '@formspree/react';
 import styles from './Contact.module.scss';
 
 const Contact: FC = () => {
@@ -14,8 +15,7 @@ const Contact: FC = () => {
 
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // <<< CHANGE IS HERE: Using the new Formspree ID
-  const [state, handleSubmit] = useForm("xjkrdqll");
+  const [state, handleSubmit] = useForm("xjkrdqll"); // This ID is correct
 
   const handleInputChange = useCallback((
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,7 +45,7 @@ const Contact: FC = () => {
 
         <div className={styles.contactGrid}>
           <ContactInfo />
-          <ContactFormSection
+          <ContactFormSection 
             formData={formData}
             isSubmitting={state.submitting}
             submitMessage={submitMessage}
@@ -59,8 +59,9 @@ const Contact: FC = () => {
   );
 };
 
+// ... (No changes in ContactInfo or ContactInfoItem)
 const ContactInfo: FC = () => (
-  <motion.div
+  <motion.div 
     className={styles.contactInfo}
     initial={{ x: -20, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
@@ -73,31 +74,17 @@ const ContactInfo: FC = () => (
     ))}
   </motion.div>
 );
-
-interface ContactInfoItemProps {
-  icon: string;
-  title: string;
-  content: string[];
-  link?: string;
-}
-
+interface ContactInfoItemProps { icon: string; title: string; content: string[]; link?: string; }
 const ContactInfoItem: FC<ContactInfoItemProps> = ({ icon, title, content, link }) => (
   <div className={styles.infoItem}>
     <i className={styles.icon}>{icon}</i>
     <div>
       <h4>{title}</h4>
-      {content.map((text, index) => (
-        link ? (
-          <p key={index}>
-            <a href={link}>{text}</a>
-          </p>
-        ) : (
-          <p key={index}>{text}</p>
-        )
-      ))}
+      {content.map((text, index) => ( link ? <p key={index}><a href={link}>{text}</a></p> : <p key={index}>{text}</p> ))}
     </div>
   </div>
 );
+
 
 interface ContactFormSectionProps {
   formData: ContactForm;
@@ -105,7 +92,8 @@ interface ContactFormSectionProps {
   submitMessage: string;
   onInputChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onSubmit: (e: FormEvent) => void;
-  state: any;
+  // <<< CHANGE 2: Replace 'any' with the specific 'FormspreeState' type
+  state: FormspreeState;
 }
 
 const ContactFormSection: FC<ContactFormSectionProps> = ({
@@ -116,7 +104,7 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
   onSubmit,
   state
 }) => (
-  <motion.div
+  <motion.div 
     className={styles.contactForm}
     initial={{ x: 20, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
@@ -147,16 +135,16 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
               required
             />
           )}
-          <ValidationError
-            prefix={field.label}
-            field={field.id}
-            errors={state.errors}
+          <ValidationError 
+            prefix={field.label} 
+            field={field.id} 
+            errors={state.errors} 
           />
         </div>
       ))}
 
-      <button
-        type="submit"
+      <button 
+        type="submit" 
         className={styles.submitButton}
         disabled={isSubmitting}
       >
@@ -165,7 +153,7 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
 
       <AnimatePresence>
         {submitMessage && (
-          <motion.div
+          <motion.div 
             className={styles.submitMessage}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,36 +167,9 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
   </motion.div>
 );
 
-const contactDetails = [
-  {
-    icon: '📍',
-    title: 'Address',
-    content: ['Cape Town', 'South Africa']
-  },
-  {
-    icon: '📞',
-    title: 'Phone',
-    content: ['+27 780 670 812', '+27 762 662 143']
-  },
-  {
-    icon: '✉️',
-    title: 'Email',
-    content: ['info@giftedtours.co.za'],
-    link: 'mailto:info@giftedtours.co.za'
-  }
-];
-
-const formFields = [
-  { id: 'name', type: 'text', label: 'Name' },
-  { id: 'email', type: 'email', label: 'Email' },
-  { id: 'comment', type: 'textarea', label: 'Comment' }
-];
-
-// Assuming you have this interface defined somewhere
-interface ContactForm {
-  name: string;
-  email: string;
-  comment: string;
-}
+// ... (No changes in the data arrays or interface)
+const contactDetails = [ { icon: '📍', title: 'Address', content: ['Cape Town', 'South Africa'] }, { icon: '📞', title: 'Phone', content: ['+27 780 670 812', '+27 762 662 143'] }, { icon: '✉️', title: 'Email', content: ['info@giftedtours.co.za'], link: 'mailto:info@giftedtours.co.za' } ];
+const formFields = [ { id: 'name', type: 'text', label: 'Name' }, { id: 'email', type: 'email', label: 'Email' }, { id: 'comment', type: 'textarea', label: 'Comment' } ];
+interface ContactForm { name: string; email: string; comment: string; }
 
 export default Contact;
