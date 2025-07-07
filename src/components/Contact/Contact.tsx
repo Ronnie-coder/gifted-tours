@@ -1,3 +1,5 @@
+// Complete code for your Contact.js file
+
 import { FC, useState, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
@@ -12,7 +14,8 @@ const Contact: FC = () => {
 
   const [submitMessage, setSubmitMessage] = useState('');
 
-  const [state, handleSubmit] = useForm("xyzjooad");
+  // <<< CHANGE IS HERE: Using the new Formspree ID
+  const [state, handleSubmit] = useForm("xjkrdqll");
 
   const handleInputChange = useCallback((
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,7 +45,7 @@ const Contact: FC = () => {
 
         <div className={styles.contactGrid}>
           <ContactInfo />
-          <ContactFormSection 
+          <ContactFormSection
             formData={formData}
             isSubmitting={state.submitting}
             submitMessage={submitMessage}
@@ -57,7 +60,7 @@ const Contact: FC = () => {
 };
 
 const ContactInfo: FC = () => (
-  <motion.div 
+  <motion.div
     className={styles.contactInfo}
     initial={{ x: -20, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
@@ -113,7 +116,7 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
   onSubmit,
   state
 }) => (
-  <motion.div 
+  <motion.div
     className={styles.contactForm}
     initial={{ x: 20, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
@@ -144,16 +147,16 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
               required
             />
           )}
-          <ValidationError 
-            prefix={field.label} 
-            field={field.id} 
-            errors={state.errors} 
+          <ValidationError
+            prefix={field.label}
+            field={field.id}
+            errors={state.errors}
           />
         </div>
       ))}
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className={styles.submitButton}
         disabled={isSubmitting}
       >
@@ -162,7 +165,7 @@ const ContactFormSection: FC<ContactFormSectionProps> = ({
 
       <AnimatePresence>
         {submitMessage && (
-          <motion.div 
+          <motion.div
             className={styles.submitMessage}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -200,5 +203,12 @@ const formFields = [
   { id: 'email', type: 'email', label: 'Email' },
   { id: 'comment', type: 'textarea', label: 'Comment' }
 ];
+
+// Assuming you have this interface defined somewhere
+interface ContactForm {
+  name: string;
+  email: string;
+  comment: string;
+}
 
 export default Contact;
