@@ -1,9 +1,9 @@
-// src/components/Layout/Footer.tsx
 import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+// --- FIX: Removed unused 'MapPin' import ---
+import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
 import { FaWhatsapp, FaTiktok } from 'react-icons/fa';
 import styles from './Footer.module.scss';
 
@@ -11,7 +11,7 @@ const Footer: FC = () => {
   const newPhoneNumber = '+27 76 266 2143';
   const whatsappNumber = '27810278801'; // No '+' for the wa.me link
   const email = 'info@giftedtours.co.za'; // Kept this one as primary
-  const secondaryEmail = 'giftedtourz@gmail.com';
+  // --- FIX: Removed unused 'secondaryEmail' variable ---
   const currentYear = new Date().getFullYear();
 
   return (

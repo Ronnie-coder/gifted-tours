@@ -1,9 +1,8 @@
-// src/components/Contact/Contact.tsx
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import QRCodeGenerator from '../QRCodeGenerator'; // Import the QR Code component
+import QRCodeGenerator from '../QRCodeGenerator';
 import styles from './Contact.module.scss';
 
 const Contact: FC = () => {
@@ -19,7 +18,8 @@ const Contact: FC = () => {
           viewport={{ once: true }}
         >
           <h2>Get In Touch</h2>
-          <p className={styles.subtitle}>Have questions or ready to book? We're here to help.</p>
+          {/* --- FIX: Replaced ' with &apos; to fix linting error --- */}
+          <p className={styles.subtitle}>Have questions or ready to book? We&apos;re here to help.</p>
         </motion.div>
 
         <div className={styles.contactGrid}>
@@ -48,11 +48,9 @@ const Contact: FC = () => {
               <Phone size={24} className={styles.icon} />
               <div>
                 <h4>Call Us</h4>
-                {/* --- UPDATED PHONE NUMBER --- */}
                 <a href="tel:+27762662143">+27 76 266 2143</a>
               </div>
             </div>
-            {/* --- QR CODE GENERATOR INTEGRATED --- */}
             <div className={styles.qrCodeWrapper}>
               <QRCodeGenerator />
             </div>

@@ -1,4 +1,3 @@
-// src/components/BookingForm/BookingForm.tsx
 import { FC, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, ValidationError } from '@formspree/react';
@@ -28,7 +27,8 @@ const BookingForm: FC = () => {
           viewport={{ once: true }}
         >
           <h2>Book Your Adventure</h2>
-          <p className={styles.subtitle}>Fill out the form below to start planning your tour. We'll get back to you shortly!</p>
+          {/* --- FIX: Replaced ' with &apos; to fix linting error --- */}
+          <p className={styles.subtitle}>Fill out the form below to start planning your tour. We&apos;ll get back to you shortly!</p>
         </motion.div>
 
         <motion.form 

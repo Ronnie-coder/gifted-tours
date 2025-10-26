@@ -38,7 +38,8 @@ const TourPortfolio: FC = () => {
             >
               <h3>Best of the Cape: Full Day Tour</h3>
               <p>
-                A comprehensive journey through the Cape Peninsula and Stellenbosch Winelands. From the pristine beaches of Camps Bay and the views from Chapman's Peak Drive to the spectacular Cape Point, a penguin colony, and a premium wine tasting experience.
+                {/* --- FIX: Replaced ' with &apos; to fix linting error --- */}
+                A comprehensive journey through the Cape Peninsula and Stellenbosch Winelands. From the pristine beaches of Camps Bay and the views from Chapman&apos;s Peak Drive to the spectacular Cape Point, a penguin colony, and a premium wine tasting experience.
               </p>
               <button 
                 onClick={scrollToContact}
@@ -68,7 +69,6 @@ const TourPortfolio: FC = () => {
             </motion.div>
           </div>
           
-          {/* --- FIX: Added id="gallery" to make this the scroll target for the nav link --- */}
           <motion.div 
             id="gallery" 
             className={styles.galleryHighlight}
