@@ -1,11 +1,12 @@
-// src/components/AboutSection/AboutSection.tsx
 import { FC } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ShieldCheck } from 'lucide-react'; // A nice icon for the promise section
+// --- FIX: Import the 'Variants' type from framer-motion ---
+import { motion, Variants } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
 import styles from './AboutSection.module.scss';
 
-const fadeInUp = {
+// --- FIX: Explicitly define the constant as the 'Variants' type to resolve the error ---
+const fadeInUp: Variants = {
   hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
@@ -38,7 +39,7 @@ const AboutSection: FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Image
-              src="/assets/images/logo.jpg" //Using the more appropriate portrait image
+              src="/assets/images/logo.jpg"
               alt="Mr. Gift - Founder of Gifted Tours"
               width={450}
               height={550}
@@ -62,7 +63,6 @@ const AboutSection: FC = () => {
           </motion.div>
         </div>
 
-        {/* --- REFINED HIGHLIGHT SECTION --- */}
         <motion.div 
           className={styles.promiseSection}
           initial="hidden"
