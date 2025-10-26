@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import styles from './Header.module.scss';
 import ThemeSwitch from '../ThemeSwitch';
-import { ArrowRight } from '@phosphor-icons/react'; // --- FIX: Import the icon for the new button
+import { ArrowRight } from '@phosphor-icons/react';
 
 const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +26,9 @@ const Header: FC = () => {
 
   // Logic for active link highlighting and scrolled state
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
+    // --- FIX: Tell TypeScript these are specifically HTMLElements to access offsetTop ---
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       let current = '';
@@ -48,7 +50,7 @@ const Header: FC = () => {
 
   const handleLinkClick = (href: string) => {
     setIsMenuOpen(false);
-    setTimeout(() => { // Small delay to allow menu animation to start before scrolling
+    setTimeout(() => {
         const element = document.querySelector(href);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -78,7 +80,6 @@ const Header: FC = () => {
             <ThemeSwitch />
           </nav>
           <div className={styles.actions}>
-            {/* --- FIX: Replaced the old button with a new Text + Icon design --- */}
             <Link href="#booking" onClick={() => handleLinkClick('#booking')} className={styles.ctaButton}>
               <span>Book a Tour</span>
               <ArrowRight size={20} weight="bold" />
