@@ -1,0 +1,105 @@
+// src/components/Hero/Hero.module.scss
+
+.hero {
+  position: relative; // Crucial for positioning child elements
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden; // Prevents any weird overflow issues
+  
+  // Force text inside the hero to be white, overriding dark mode styles
+  color: #ffffff !important;
+}
+
+// Container for the Next.js <Image> component
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+// The dark overlay to ensure text is always readable
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); // A slightly darker overlay for better contrast
+  z-index: 2;
+}
+
+// The text and button content
+.content {
+  position: relative;
+  z-index: 3; // Sits on top of the overlay
+  padding: 0 var(--spacing-md);
+  max-width: 900px;
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem); // Fluidly responsive font size
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: var(--spacing-sm);
+    
+    // Override global styles again for safety
+    color: #ffffff !important;
+  }
+
+  p {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    max-width: 650px;
+    margin: 0 auto var(--spacing-lg);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.cta {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap; // Allows buttons to stack cleanly on small screens
+}
+
+.primaryBtn,
+.secondaryBtn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  border-radius: 50px; // Modern rounded buttons
+  transition: all 0.3s ease;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid;
+}
+
+.primaryBtn {
+  // Using theme variables for colors
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-on-accent);
+
+  &:hover {
+    background-color: var(--accent-hover-color);
+    border-color: var(--accent-hover-color);
+    transform: translateY(-3px); // Add a subtle lift effect
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000; // Text becomes black on a white background
+    transform: translateY(-3px);
+  }
+}

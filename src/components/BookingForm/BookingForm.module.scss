@@ -1,0 +1,155 @@
+// src/components/BookingForm/BookingForm.module.scss
+
+.bookingSection {
+  padding: var(--spacing-xl) 0;
+  // Use a theme variable for the background
+  background-color: var(--secondary-color);
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.titleWrapper {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+
+  h2 {
+    font-size: 2.8rem;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+}
+
+.bookingForm {
+  background-color: var(--primary-color);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0; // The form group margin will handle spacing
+  }
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .required {
+    color: #e53935; // Red for required fields is universal
+    margin-left: 4px;
+  }
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2); // Use a subtle accent glow
+  }
+}
+
+.formGroup select {
+  cursor: pointer;
+  appearance: none;
+  // SVG arrow for select dropdown, theme-aware
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%235c5c5c'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+}
+
+.fieldError {
+  color: #c62828;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: var(--accent-color);
+  color: var(--text-on-accent);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+
+  &:hover:not(:disabled) {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}
+
+.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  &::after {
+    content: ''; width: 1rem; height: 1rem;
+    border: 2px solid var(--text-on-accent);
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+.message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

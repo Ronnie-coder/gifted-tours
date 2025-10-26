@@ -1,0 +1,61 @@
+// src/styles/global.scss
+@use 'variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  
+  // This is key for smooth theme transitions!
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--accent-hover-color);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+button.primary {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--accent-color);
+  color: var(--text-on-accent);
+  font-weight: bold;
+  font-family: var(--font-main);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--accent-hover-color);
+  }
+}
+
+
+main > section:first-child {
+  padding-top: 0 !important;
+}

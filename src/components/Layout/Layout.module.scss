@@ -1,0 +1,11 @@
+// src/components/Layout/Layout.module.scss
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-top: 80px; // To account for fixed header
+}

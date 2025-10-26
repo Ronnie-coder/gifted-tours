@@ -1,0 +1,16 @@
+// src/styles/_colors.scss
+@use 'sass:color';
+
+// Define your color palette
+$primary: #ffd700;
+$text-dark: #333;
+$text-light: #666;
+
+// Color utility functions
+@function darker($color, $percentage) {
+  @return color.adjust($color, $lightness: -$percentage);
+}
+
+@function lighter($color, $percentage) {
+  @return color.adjust($color, $lightness: $percentage);
+}
