@@ -59,21 +59,21 @@ END:VCARD`;
               <div className="flex items-start gap-4">
                 <MapPin className="text-brand-yellow w-6 h-6 shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-foreground mb-1">Our Location</h4>
+                  <h3 className="font-bold text-foreground mb-1 text-base">Our Location</h3>
                   <p className="text-muted-foreground text-sm">Based in beautiful Cape Town, South Africa</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Mail className="text-brand-yellow w-6 h-6 shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-foreground mb-1">Email Us</h4>
+                  <h3 className="font-bold text-foreground mb-1 text-base">Email Us</h3>
                   <p className="text-muted-foreground text-sm">giftedtourz@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Phone className="text-brand-yellow w-6 h-6 shrink-0 mt-1" />
                 <div>
-                  <h4 className="font-bold text-foreground mb-1">Call Us</h4>
+                  <h3 className="font-bold text-foreground mb-1 text-base">Call Us</h3>
                   <p className="text-muted-foreground text-sm">+27 76 266 2143</p>
                 </div>
               </div>
@@ -87,7 +87,7 @@ END:VCARD`;
                 height={40} 
                 className="h-10 w-auto mx-auto mb-4" 
               />
-              <h4 className="font-bold text-foreground mb-4">Scan to Save Contact</h4>
+              <h3 className="font-bold text-foreground mb-4 text-base">Scan to Save Contact</h3>
               
               <div className="w-48 h-48 bg-white mx-auto mb-4 flex items-center justify-center rounded-xl shadow-inner p-4">
                 <QRCode 

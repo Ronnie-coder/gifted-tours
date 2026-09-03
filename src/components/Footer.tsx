@@ -42,10 +42,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-foreground text-lg mb-6 relative inline-block">
+            <h2 className="font-bold text-foreground text-lg mb-6 relative inline-block">
               Quick Links
               <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-brand-yellow"></span>
-            </h4>
+            </h2>
             <ul className="space-y-4 text-muted-foreground">
               {['About', 'Services', 'Fleet', 'Book'].map((link) => (
                 <li key={link}>
@@ -58,10 +58,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-foreground text-lg mb-6 relative inline-block">
+            <h2 className="font-bold text-foreground text-lg mb-6 relative inline-block">
               Contact & Socials
               <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-brand-yellow"></span>
-            </h4>
+            </h2>
             <ul className="space-y-4 text-muted-foreground mb-8">
               <li className="flex items-center gap-3"><Mail className="text-brand-yellow w-5 h-5" /> info@giftedtours.co.za</li>
               <li className="flex items-center gap-3"><Phone className="text-brand-yellow w-5 h-5" /> +27 76 266 2143</li>

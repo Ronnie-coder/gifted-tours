@@ -7,13 +7,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } },
   };
 
   const itemVariants = {
@@ -24,13 +18,7 @@ export default function Hero() {
   const subtitle = "Experience the beauty of South Africa with our exclusive, tailored tours.";
   const typewriterVariants = {
     hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.8,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.03, delayChildren: 0.8 } },
   };
 
   const letterVariants = {
@@ -57,34 +45,18 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/50 transition-colors duration-300"></div>
       </motion.div>
 
-      <motion.div 
-        className="relative z-10 px-4 max-w-4xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.h1 
-          variants={itemVariants}
-          className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg"
-        >
+      <motion.div className="relative z-10 px-4 max-w-4xl mx-auto" variants={containerVariants} initial="hidden" animate="visible">
+        <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-lg">
           Explore Cape Town
         </motion.h1>
         
-        <motion.p 
-          variants={typewriterVariants}
-          className="text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl mx-auto drop-shadow-md min-h-[60px]"
-        >
+        <motion.p variants={typewriterVariants} className="notranslate text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl mx-auto drop-shadow-md min-h-[96px] sm:min-h-[60px]">
           {subtitle.split("").map((char, index) => (
-            <motion.span key={index} variants={letterVariants}>
-              {char}
-            </motion.span>
+            <motion.span key={index} variants={letterVariants}>{char}</motion.span>
           ))}
         </motion.p>
         
-        <motion.div 
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link href="/#book" className="cursor-pointer inline-flex items-center justify-center bg-brand-yellow text-brand-dark hover:bg-yellow-400 font-bold rounded-full px-8 w-full sm:w-auto h-14 text-lg transition-transform hover:scale-105">
             Book A Tour
           </Link>
