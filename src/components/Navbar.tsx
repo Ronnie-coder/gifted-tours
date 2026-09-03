@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { Moon, Sun, Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,22 +45,18 @@ export default function Navbar() {
         if (found) setCurrentLang(found);
       }
 
-      // Inject Google Translate Script
-      if (!document.getElementById("google-translate-script")) {
-        const script = document.createElement("script");
-        script.id = "google-translate-script";
-        script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-        document.body.appendChild(script);
-
+      // Safe window assignment for the external Script component
+      // @ts-ignore
+      window.googleTranslateElementInit = () => {
         // @ts-ignore
-        window.googleTranslateElementInit = () => {
+        if (window.google && window.google.translate) {
           // @ts-ignore
           new window.google.translate.TranslateElement({
             pageLanguage: 'en',
             autoDisplay: false,
           }, 'google_translate_element');
-        };
-      }
+        }
+      };
     }
   }, []);
 
@@ -126,6 +123,8 @@ export default function Navbar() {
 
   return (
     <>
+      <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="lazyOnload" />
+      
       {/* Hidden element required for Google Translate to initialize */}
       <div id="google_translate_element" style={{ display: 'none' }}></div>
       
@@ -161,6 +160,7 @@ export default function Navbar() {
                 onClick={() => setIsLangOpen(!isLangOpen)} 
                 onBlur={() => setTimeout(() => setIsLangOpen(false), 200)}
                 className="flex items-center gap-2 cursor-pointer text-foreground hover:text-brand-yellow transition text-sm font-bold"
+                aria-label="Select Language"
               >
                 <Globe className="w-4 h-4" />
                 <img src={`https://flagcdn.com/w20/${currentLang.flag}.png`} alt={currentLang.name} className="w-5 h-auto rounded-sm shadow-sm" />
@@ -206,7 +206,12 @@ export default function Navbar() {
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="cursor-pointer text-foreground p-2">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              className="cursor-pointer text-foreground p-2"
+              aria-label="Toggle mobile menu" 
+              aria-expanded={isMobileMenuOpen}
+            >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -230,11 +235,7 @@ export default function Navbar() {
                 <div className="text-sm text-muted-foreground font-bold mb-1">Languages</div>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
-                    <div 
-                      key={lang.code} 
-                      className="flex items-center gap-3 py-1 cursor-pointer"
-                      onClick={() => handleLanguageChange(lang)}
-                    >
+                    <div key={lang.code} className="flex items-center gap-3 py-1 cursor-pointer" onClick={() => handleLanguageChange(lang)}>
                       <img src={`https://flagcdn.com/w20/${lang.flag}.png`} alt={lang.name} className="w-5 h-auto rounded-sm shadow-sm" />
                       <span className={`text-sm ${currentLang.code === lang.code ? "font-bold text-foreground" : "text-muted-foreground"}`}>{lang.name}</span>
                     </div>

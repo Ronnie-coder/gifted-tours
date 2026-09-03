@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -11,64 +12,56 @@ export default function Fleet() {
       category: "First-Class Sedan",
       passengers: 3,
       features: ["Ultimate Luxury", "Chauffeur-Driven", "Ambient Lighting", "First-Class Comfort"],
-      img: "/assets/mercedes-s-class.webp",
-      fallback: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/mercedes-s-class.webp"
     },
     {
       name: "BMW 2 Series Gran Coupé",
       category: "Executive Sport Sedan",
       passengers: 3,
       features: ["Sporty Design", "Modern Interior", "Business & Leisure", "Dynamic Drive"],
-      img: "/assets/bmw-2-series.webp",
-      fallback: "https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/bmw-2-series.webp"
     },
     {
       name: "BMW X5 M Sport",
       category: "Performance SUV",
       passengers: 4,
       features: ["M Sport Package", "Panoramic Sunroof", "Aggressive Styling", "Harman Kardon Sound"],
-      img: "/assets/bmw-x5-m-sport.webp",
-      fallback: "https://images.unsplash.com/photo-1556800572-1b8aeef2c54f?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/bmw-x5-m-sport.webp"
     },
     {
       name: "Toyota Land Cruiser",
       category: "Safari Vehicle",
       passengers: 7,
       features: ["Safari Configured", "Elevated Seating", "Rugged Comfort", "Wildlife Viewing"],
-      img: "/assets/land-cruiser.webp",
-      fallback: "https://images.unsplash.com/photo-1590243453392-4fdbbd272fdf?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/land-cruiser.webp"
     },
     {
       name: "Hyundai H1",
       category: "Luxury Van",
       passengers: 8,
       features: ["Air Conditioning", "Leather Seats", "Luggage Space", "Comfortable Interior"],
-      img: "/assets/hyundai-h1.webp",
-      fallback: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/hyundai-h1.webp"
     },
     {
       name: "Hyundai Staria",
       category: "Premium Van",
       passengers: 9,
       features: ["Panoramic Windows", "USB Charging", "Extra Legroom", "Modern Design"],
-      img: "/assets/hyundai-staria.webp",
-      fallback: "https://images.unsplash.com/photo-1669022933758-a53697ebdb81?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/hyundai-staria.webp"
     },
     {
       name: "Toyota Quantum",
       category: "Group Transport",
       passengers: 14,
       features: ["Spacious Interior", "Air Conditioning", "Large Luggage Space", "Reliable"],
-      img: "/assets/toyota-quantum.webp",
-      fallback: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=600&auto=format&fit=crop"
+      img: "/assets/toyota-quantum.webp"
     },
     {
       name: "Mercedes-Benz Vito",
       category: "Luxury Transport",
       passengers: 8,
       features: ["Premium Leather", "Climate Control", "Executive Interior", "Group Comfort"],
-      img: "/assets/mercedes-vito.webp",
-      fallback: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=600&auto=format&fit=crop" 
+      img: "/assets/mercedes-vito.webp"
     }
   ];
 
@@ -108,11 +101,12 @@ export default function Fleet() {
           {fleet.map((vehicle, index) => (
             <motion.div key={index} variants={cardVariants} className="bg-card rounded-2xl shadow-sm border overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
               <div className="h-48 bg-muted relative overflow-hidden">
-                <img 
+                <Image 
                   src={vehicle.img} 
                   alt={vehicle.name} 
-                  className="w-full h-full object-cover hover:scale-110 transition duration-500" 
-                  onError={(e) => { e.currentTarget.src = vehicle.fallback }}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover hover:scale-110 transition duration-500" 
                 />
               </div>
               <div className="p-6 flex flex-col flex-grow">

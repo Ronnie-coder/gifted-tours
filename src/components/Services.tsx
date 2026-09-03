@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Map, Car, Plane, Send, UserCheck, Droplets, Compass, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -106,11 +107,13 @@ export default function Services() {
                 href={`/services/${service.slug}`}
                 className="group bg-card rounded-2xl shadow-sm border border-border overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
+                <div className="relative h-48 overflow-hidden bg-muted">
+                  <Image 
                     src={service.image} 
                     alt={service.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-110 transition duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <span className="absolute top-4 right-4 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-full shadow">

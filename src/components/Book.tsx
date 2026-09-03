@@ -47,19 +47,19 @@ export default function Book() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Name & Surname <span className="text-red-500">*</span></label>
-                <input type="text" name="name" placeholder="Enter your full name" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
+                <label htmlFor="name" className="block text-sm font-bold text-foreground mb-2">Name & Surname <span className="text-red-500">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Email Address <span className="text-red-500">*</span></label>
-                <input type="email" name="email" placeholder="Enter your email" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
+                <label htmlFor="email" className="block text-sm font-bold text-foreground mb-2">Email Address <span className="text-red-500">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Tour Category</label>
-                <select name="category" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition">
+                <label htmlFor="category" className="block text-sm font-bold text-foreground mb-2">Tour Category</label>
+                <select id="category" name="category" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition">
                   <option value="Any">Any</option>
                   <option value="Cape Peninsula Tour">Cape Peninsula Tour</option>
                   <option value="Wine Tasting Tour">Wine Tasting Tour</option>
@@ -71,8 +71,8 @@ export default function Book() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Preferred Vehicle</label>
-                <select name="vehicle" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition">
+                <label htmlFor="vehicle" className="block text-sm font-bold text-foreground mb-2">Preferred Vehicle</label>
+                <select id="vehicle" name="vehicle" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition">
                   {vehicles.map(v => <option key={v} value={v}>{v}</option>)}
                 </select>
               </div>
@@ -81,8 +81,9 @@ export default function Book() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-bold text-foreground mb-2">Tour Duration</label>
+                  <label htmlFor="duration_preset" className="block text-sm font-bold text-foreground mb-2">Tour Duration</label>
                   <select 
+                    id="duration_preset"
                     name="duration_preset" 
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
@@ -98,20 +99,20 @@ export default function Book() {
                 </div>
                 {duration === "Custom" && (
                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="overflow-hidden">
-                    <label className="block text-sm font-bold text-foreground mb-2">Specify Duration <span className="text-red-500">*</span></label>
-                    <input type="text" name="custom_duration" placeholder="e.g., 5 Days, 1 Week..." className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required={duration === "Custom"} />
+                    <label htmlFor="custom_duration" className="block text-sm font-bold text-foreground mb-2">Specify Duration <span className="text-red-500">*</span></label>
+                    <input type="text" id="custom_duration" name="custom_duration" placeholder="e.g., 5 Days, 1 Week..." className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required={duration === "Custom"} />
                   </motion.div>
                 )}
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Preferred Date <span className="text-red-500">*</span></label>
-                <input type="date" name="date" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-muted-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
+                <label htmlFor="date" className="block text-sm font-bold text-foreground mb-2">Preferred Date <span className="text-red-500">*</span></label>
+                <input type="date" id="date" name="date" className="cursor-pointer w-full px-4 py-3 rounded-lg border bg-background text-muted-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-foreground mb-2">Budget (ZAR)</label>
-              <input type="text" name="budget" placeholder="e.g., 5000" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" />
+              <label htmlFor="budget" className="block text-sm font-bold text-foreground mb-2">Budget (ZAR)</label>
+              <input type="text" id="budget" name="budget" placeholder="e.g., 5000" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" />
             </div>
 
             <Button type="submit" className="cursor-pointer w-full bg-brand-yellow text-brand-dark hover:bg-yellow-400 font-bold py-6 rounded-lg transition transform hover:scale-[1.01] mt-4 text-base">

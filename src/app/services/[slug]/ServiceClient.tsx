@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Clock, MapPin, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -24,7 +25,14 @@ export default function ServiceClient({ service }: { service: any }) {
           animate={{ scale: 1.05 }}
           transition={{ duration: 15, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
         >
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <Image 
+            src={service.image} 
+            alt={service.title} 
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover" 
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
         </motion.div>
         

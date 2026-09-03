@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -79,10 +80,12 @@ export default function Gallery() {
                 index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
-              <img
+              <Image
                 src={item.src}
                 alt={item.location}
-                className="w-full h-full object-cover transform scale-105 transition-transform duration-[10000ms] ease-out"
+                fill
+                sizes="100vw"
+                className="object-cover transform scale-105 transition-transform duration-[10000ms] ease-out"
                 style={{ transform: index === currentIndex ? "scale(1)" : "scale(1.05)" }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>

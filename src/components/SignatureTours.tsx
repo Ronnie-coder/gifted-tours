@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -60,10 +61,12 @@ export default function SignatureTours() {
                 className="group bg-card rounded-2xl shadow-sm border overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full"
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img 
+                  <Image 
                     src={tour.image} 
                     alt={tour.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-110 transition duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <h3 className="absolute bottom-6 left-6 right-6 text-2xl font-bold text-white drop-shadow-md">

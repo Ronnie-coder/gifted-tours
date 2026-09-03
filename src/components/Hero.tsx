@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Hero() {
@@ -20,7 +21,6 @@ export default function Hero() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
   };
 
-  // Typewriter effect configuration
   const subtitle = "Experience the beauty of South Africa with our exclusive, tailored tours.";
   const typewriterVariants = {
     hidden: { opacity: 1 },
@@ -46,18 +46,13 @@ export default function Hero() {
         animate={{ scale: 1.1 }}
         transition={{ duration: 12, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
-        <img 
+        <Image 
           src="/assets/hero-bg.webp" 
           alt="Gifted Tours Cape Town" 
-          className="w-full h-full object-cover" 
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            if (target.src.includes('.webp')) {
-              target.src = '/assets/hero-bg.jpg';
-            } else if (target.src.includes('.jpg') && !target.src.includes('.jpeg')) {
-              target.src = '/assets/hero-bg.jpeg';
-            }
-          }}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover" 
         />
         <div className="absolute inset-0 bg-black/50 transition-colors duration-300"></div>
       </motion.div>
