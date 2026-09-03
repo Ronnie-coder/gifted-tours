@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronUp, Mail, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -26,7 +27,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <img src="/assets/logo.webp" alt="Gifted Tours Logo" className="h-12" />
+              <Image 
+                src="/assets/logo.webp" 
+                alt="Gifted Tours Logo" 
+                width={48} 
+                height={48} 
+                className="h-12 w-auto" 
+              />
               <span className="font-extrabold text-xl text-foreground">Gifted Tours</span>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-sm">
@@ -82,6 +89,7 @@ export default function Footer() {
       <Button
         onClick={scrollToTop}
         size="icon"
+        aria-label="Scroll to top"
         className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full shadow-lg transition-all duration-300 ${
           showTopBtn ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         } bg-brand-dark dark:bg-brand-yellow text-white dark:text-brand-dark hover:bg-slate-800 dark:hover:bg-yellow-500`}

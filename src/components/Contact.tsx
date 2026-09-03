@@ -4,6 +4,7 @@ import { MapPin, Mail, Phone, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import QRCode from "react-qr-code";
+import Image from "next/image";
 
 export default function Contact() {
   const handleShare = async () => {
@@ -79,7 +80,13 @@ END:VCARD`;
             </div>
 
             <div className="bg-card p-8 rounded-2xl shadow-sm border w-full max-w-sm text-center transform hover:-translate-y-1 transition duration-300">
-              <img src="/assets/logo.webp" alt="Gifted Tours Logo" className="h-10 mx-auto mb-4" />
+              <Image 
+                src="/assets/logo.webp" 
+                alt="Gifted Tours Logo" 
+                width={40} 
+                height={40} 
+                className="h-10 w-auto mx-auto mb-4" 
+              />
               <h4 className="font-bold text-foreground mb-4">Scan to Save Contact</h4>
               
               <div className="w-48 h-48 bg-white mx-auto mb-4 flex items-center justify-center rounded-xl shadow-inner p-4">
@@ -111,16 +118,16 @@ END:VCARD`;
               <input type="hidden" name="_next" value="https://www.giftedtours.co.za/" />
 
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Full Name</label>
-                <input type="text" name="name" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
+                <label htmlFor="contact_name" className="block text-sm font-bold text-foreground mb-2">Full Name</label>
+                <input type="text" id="contact_name" name="name" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Email Address</label>
-                <input type="email" name="email" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
+                <label htmlFor="contact_email" className="block text-sm font-bold text-foreground mb-2">Email Address</label>
+                <input type="email" id="contact_email" name="email" className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition" required />
               </div>
               <div>
-                <label className="block text-sm font-bold text-foreground mb-2">Your Message</label>
-                <textarea name="message" rows={5} className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition resize-none" required></textarea>
+                <label htmlFor="contact_message" className="block text-sm font-bold text-foreground mb-2">Your Message</label>
+                <textarea id="contact_message" name="message" rows={5} className="w-full px-4 py-3 rounded-lg border bg-background text-foreground focus:outline-none focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow transition resize-none" required></textarea>
               </div>
               <Button type="submit" className="cursor-pointer w-full bg-brand-yellow text-brand-dark hover:bg-yellow-400 font-bold py-6 rounded-lg transition transform hover:scale-[1.01] text-base">
                 Send Message
