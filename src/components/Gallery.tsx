@@ -7,7 +7,7 @@ import { MapPin, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const galleryData = [
-  { src: "/assets/adventure-1.webp", location: "Lion's Head", phrase: "Hike to breathtaking sunset views." }, 
+  { src: "/assets/adventure-1.jpg", location: "Lion's Head", phrase: "Hike to breathtaking sunset views." }, 
   { src: "/assets/aquarium-1.webp", location: "Two Oceans Aquarium", phrase: "Discover the magic beneath the surface." },
   { src: "/assets/baboons.webp", location: "Cape Wildlife", phrase: "Encounter the Cape's curious wildlife." },
   { src: "/assets/baboons-1.webp", location: "Cape Peninsula", phrase: "Share the road with local residents." },

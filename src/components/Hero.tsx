@@ -16,15 +16,6 @@ export default function Hero() {
   };
 
   const subtitle = "Experience the beauty of South Africa with our exclusive, tailored tours.";
-  const typewriterVariants = {
-    hidden: { opacity: 1 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.03, delayChildren: 0.8 } },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, display: "none" },
-    visible: { opacity: 1, display: "inline" },
-  };
 
   return (
     <section id="hero" className="relative h-[calc(100vh-5rem)] min-h-[600px] flex items-center justify-center text-center overflow-hidden">
@@ -35,7 +26,7 @@ export default function Hero() {
         transition={{ duration: 12, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
         <Image 
-          src="/assets/hero-bg.webp" 
+          src="/assets/hero-bg.jpg" 
           alt="Gifted Tours Cape Town" 
           fill
           priority
@@ -50,10 +41,9 @@ export default function Hero() {
           Explore Cape Town
         </motion.h1>
         
-        <motion.p variants={typewriterVariants} className="notranslate text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl mx-auto drop-shadow-md min-h-[96px] sm:min-h-[60px]">
-          {subtitle.split("").map((char, index) => (
-            <motion.span key={index} variants={letterVariants}>{char}</motion.span>
-          ))}
+        {/* Replaced typewriter with a smooth fade-in and removed notranslate */}
+        <motion.p variants={itemVariants} className="text-lg md:text-2xl text-gray-200 mb-10 font-medium max-w-2xl mx-auto drop-shadow-md">
+          {subtitle}
         </motion.p>
         
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4">

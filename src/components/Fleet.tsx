@@ -12,65 +12,62 @@ export default function Fleet() {
       category: "First-Class Sedan",
       passengers: 3,
       features: ["Ultimate Luxury", "Chauffeur-Driven", "Ambient Lighting", "First-Class Comfort"],
-      img: "/assets/mercedes-s-class.webp"
+      img: "/assets/mercedes-s-class.jpg"
     },
     {
       name: "BMW 2 Series Gran Coupé",
       category: "Executive Sport Sedan",
       passengers: 3,
       features: ["Sporty Design", "Modern Interior", "Business & Leisure", "Dynamic Drive"],
-      img: "/assets/bmw-2-series.webp"
+      img: "/assets/bmw-2-series.jpg"
     },
     {
       name: "BMW X5 M Sport",
       category: "Performance SUV",
       passengers: 4,
       features: ["M Sport Package", "Panoramic Sunroof", "Aggressive Styling", "Harman Kardon Sound"],
-      img: "/assets/bmw-x5-m-sport.webp"
+      img: "/assets/bmw-x5-m-sport.jpg"
     },
     {
       name: "Toyota Land Cruiser",
       category: "Safari Vehicle",
       passengers: 7,
       features: ["Safari Configured", "Elevated Seating", "Rugged Comfort", "Wildlife Viewing"],
-      img: "/assets/land-cruiser.webp"
+      img: "/assets/land-cruiser.jpg"
     },
     {
       name: "Hyundai H1",
       category: "Luxury Van",
       passengers: 8,
       features: ["Air Conditioning", "Leather Seats", "Luggage Space", "Comfortable Interior"],
-      img: "/assets/hyundai-h1.webp"
+      img: "/assets/hyundai-h1.jpg"
     },
     {
       name: "Hyundai Staria",
       category: "Premium Van",
       passengers: 9,
       features: ["Panoramic Windows", "USB Charging", "Extra Legroom", "Modern Design"],
-      img: "/assets/hyundai-staria.webp"
+      img: "/assets/hyundai-staria.jpg"
     },
     {
       name: "Toyota Quantum",
       category: "Group Transport",
       passengers: 14,
       features: ["Spacious Interior", "Air Conditioning", "Large Luggage Space", "Reliable"],
-      img: "/assets/toyota-quantum.webp"
+      img: "/assets/toyota-quantum.jpg"
     },
     {
       name: "Mercedes-Benz Vito",
       category: "Luxury Transport",
       passengers: 8,
       features: ["Premium Leather", "Climate Control", "Executive Interior", "Group Comfort"],
-      img: "/assets/mercedes-vito.webp"
+      img: "/assets/mercedes-vito.jpg"
     }
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const cardVariants = {
@@ -99,16 +96,19 @@ export default function Fleet() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {fleet.map((vehicle, index) => (
-            <motion.div key={index} variants={cardVariants} className="bg-card rounded-2xl shadow-sm border overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300">
-              <div className="h-48 bg-muted relative overflow-hidden">
+            <motion.div key={index} variants={cardVariants} className="bg-card rounded-2xl shadow-sm border overflow-hidden flex flex-col hover:shadow-lg transition-all duration-300 group">
+              
+              {/* Set a consistent height and used object-contain with p-4 to ensure zero cropping */}
+              <div className="h-56 sm:h-64 w-full bg-muted/20 relative overflow-hidden flex items-center justify-center">
                 <Image 
                   src={vehicle.img} 
                   alt={vehicle.name} 
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover hover:scale-110 transition duration-500" 
+                  className="object-contain p-4 group-hover:scale-105 transition duration-500" 
                 />
               </div>
+              
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold text-foreground mb-2">{vehicle.name}</h3>
                 <span className="inline-block bg-muted text-muted-foreground text-xs font-bold px-3 py-1 rounded-full w-max mb-4">

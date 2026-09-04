@@ -31,21 +31,18 @@ export default function Navbar() {
   const [currentLang, setCurrentLang] = useState(languages[0]);
   const pathname = usePathname();
 
-  // Initialize Theme and Translation Cookie
   useEffect(() => {
     if (typeof window !== "undefined") {
       const isDark = document.documentElement.classList.contains("dark") || localStorage.getItem("theme") === "dark";
       setIsDarkMode(isDark);
       if (isDark) document.documentElement.classList.add("dark");
 
-      // Check current language from Google Translate cookie
       const match = document.cookie.match(/googtrans=\/en\/([^;]+)/);
       if (match && match[1]) {
         const found = languages.find(l => l.code === match[1]);
         if (found) setCurrentLang(found);
       }
 
-      // Safe window assignment for the external Script component
       // @ts-ignore
       window.googleTranslateElementInit = () => {
         // @ts-ignore
@@ -76,15 +73,13 @@ export default function Navbar() {
     setIsLangOpen(false);
     setIsMobileMenuOpen(false);
     
-    // Set Google Translate cookies for the selected language
-    document.cookie = `googtrans=/en/${lang.code}; path=/`;
-    document.cookie = `googtrans=/en/${lang.code}; domain=.${window.location.hostname}; path=/`;
+    // Upgraded with SameSite=Lax for Incognito and Mobile support
+    document.cookie = `googtrans=/en/${lang.code}; path=/; SameSite=Lax`;
+    document.cookie = `googtrans=/en/${lang.code}; domain=.${window.location.hostname}; path=/; SameSite=Lax`;
     
-    // Reload to apply translation
     window.location.reload();
   };
 
-  // Scroll Spy Logic
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -123,9 +118,9 @@ export default function Navbar() {
 
   return (
     <>
-      <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="lazyOnload" />
+      {/* Upgraded to afterInteractive */}
+      <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
       
-      {/* Hidden element required for Google Translate to initialize */}
       <div id="google_translate_element" style={{ display: 'none' }}></div>
       
       <nav className="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-border transition-colors duration-300">
@@ -253,7 +248,6 @@ export default function Navbar() {
         )}
       </nav>
       
-      {/* Hide the default Google Translate top banner via CSS */}
       <style dangerouslySetInnerHTML={{__html: `
         .goog-te-banner-frame.skiptranslate { display: none !important; } 
         body { top: 0px !important; }
